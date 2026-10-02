@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}Crear Usuario{% endblock %}
+
+{% block content %}
+<div class="card form-container">
+    <h2>Registrar Nuevo Usuario</h2>
+
+    <form action="{{ url_for('usuario.crear') }}" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Ej: juan@email.com">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{{ url_for('usuario.index') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
