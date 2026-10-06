@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Gestión de Usuarios{% endblock %}</title>
+    <title>Gestión Clínica</title>
+    <!-- Vinculación del CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <h1 class="logo">Sistema MVC</h1>
-            <ul>
-                <li><a href="{{ url_for('usuario.index') }}">Inicio</a></li>
-                <li><a href="{{ url_for('usuario.crear') }}">Nuevo Usuario</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <a href="{{ url_for('listar_pacientes') }}">Pacientes</a>
+    </nav>
 
-    <main class="container">
+    <main>
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2026 - Proyecto MVC Flask</p>
-    </footer>
+    <!-- Vinculación del JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

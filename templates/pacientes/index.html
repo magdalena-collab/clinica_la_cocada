@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Listado de Pacientes</h2>
+<a href="{{ url_for('crear_paciente') }}">Nuevo Paciente</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>RUT</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paciente in pacientes %}
+        <tr>
+            <td>{{ paciente.rut }}</td>
+            <td>{{ paciente.nombre }} {{ paciente.apellido }}</td>
+            <td>{{ paciente.email }}</td>
+            <td>
+                <a href="{{ url_for('editar_paciente', id=paciente.id) }}">Editar</a>
+                <form action="{{ url_for('eliminar_paciente', id=paciente.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('¿Eliminar paciente?')">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
