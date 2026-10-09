@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Editar Paciente</h2>
+<form method="POST">
+    <label>RUT:</label><input type="text" name="rut" value="{{ paciente.rut }}" required><br>
+    <label>Nombre:</label><input type="text" name="nombre" value="{{ paciente.nombre }}" required><br>
+    <label>Apellido:</label><input type="text" name="apellido" value="{{ paciente.apellido }}" required><br>
+    <label>Fecha Nacimiento:</label><input type="date" name="fecha_nacimiento" value="{{ paciente.fecha_nacimiento }}" required><br>
+    <label>Teléfono:</label><input type="text" name="telefono" value="{{ paciente.telefono }}"><br>
+    <label>Email:</label><input type="email" name="email" value="{{ paciente.email }}"><br>
+    <button type="submit">Actualizar</button>
+</form>
+{% endblock %}

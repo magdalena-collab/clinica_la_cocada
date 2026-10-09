@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Lista de Médicos</h1>
+
+<a href="{{ url_for('crear_medico') }}">Crear médico</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for medico in medicos %}
+        <tr>
+            <td>{{ medico.id }}</td>
+            <td>{{ medico.nombre }}</td>
+            <td>
+                <a href="{{ url_for('editar_medico', id=medico.id) }}">Editar</a>
+
+                <form action="{{ url_for('eliminar_medico', id=medico.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
