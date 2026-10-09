@@ -6,58 +6,52 @@ def get_db_connection():
     return mysql.connector.connect(**DB_CONFIG)
 
 
-class ConsultaModel:
+class MedicoModel:
 
     @staticmethod
-    def obtener_todas():
+    def obtener_todos():
         conexion = get_db_connection()
         cursor = conexion.cursor(dictionary=True)
 
-        sql = """
-            SELECT *
-            FROM consulta
-            ORDER BY fecha DESC, hora DESC
-        """
-
-        cursor.execute(sql)
-        consultas = cursor.fetchall()
+        cursor.execute("SELECT * FROM medico")
+        medicos = cursor.fetchall()
 
         cursor.close()
         conexion.close()
 
-        return consultas
+        return medicos
 
     @staticmethod
-    def obtener_por_id(id_consulta):
+    def obtener_por_id(id_medico):
         conexion = get_db_connection()
         cursor = conexion.cursor(dictionary=True)
 
         cursor.execute(
-            "SELECT * FROM consulta WHERE id_consulta = %s",
-            (id_consulta,)
+            "SELECT * FROM medico WHERE id_medico = %s",
+            (id_medico,)
         )
 
-        consulta = cursor.fetchone()
+        medico = cursor.fetchone()
 
         cursor.close()
         conexion.close()
 
-        return consulta
+        return medico
 
     @staticmethod
-    def agregar(codigo, fecha, hora, id_consulta, motivo, rut):
+    def agregar(id_medico, nombre, apellido, especialidad, telefono, email):
         conexion = get_db_connection()
         cursor = conexion.cursor()
 
         sql = """
-            INSERT INTO consulta
-            (codigo, fecha, hora, id_consulta, motivo, rut)
+            INSERT INTO medico
+            (id_medico, nombre, apellido, especialidad, telefono, email)
             VALUES (%s, %s, %s, %s, %s, %s)
         """
 
         cursor.execute(
             sql,
-            (codigo, fecha, hora, id_consulta, motivo, rut)
+            (id_medico, nombre, apellido, especialidad, telefono, email)
         )
 
         conexion.commit()
@@ -66,13 +60,13 @@ class ConsultaModel:
         conexion.close()
 
     @staticmethod
-    def eliminar(id_consulta):
+    def eliminar(id_medico):
         conexion = get_db_connection()
         cursor = conexion.cursor()
 
         cursor.execute(
-            "DELETE FROM consulta WHERE id_consulta = %s",
-            (id_consulta,)
+            "DELETE FROM medico WHERE id_medico = %s",
+            (id_medico,)
         )
 
         conexion.commit()
