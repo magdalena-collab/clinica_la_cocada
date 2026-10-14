@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Crear Paciente</h2>
+<form method="POST">
+    <label>RUT:</label><input type="text" name="rut" required><br>
+    <label>Nombre:</label><input type="text" name="nombre" required><br>
+    <label>Apellido:</label><input type="text" name="apellido" required><br>
+    <label>Fecha Nacimiento:</label><input type="date" name="fecha_nacimiento" required><br>
+    <label>Teléfono:</label><input type="text" name="telefono"><br>
+    <label>Email:</label><input type="email" name="email"><br>
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

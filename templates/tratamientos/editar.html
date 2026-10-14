@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Editar Tratamiento</h1>
+
+<form method="POST">
+
+    <label>Tratamiento:</label>
+    <input type="text" name="nombre" value="{{ tratamiento.nombre }}" required>
+
+    <button type="submit">Guardar cambios</button>
+</form>
+
+<a href="{{ url_for('listar_tratamientos') }}">Volver</a>
+{% endblock %}

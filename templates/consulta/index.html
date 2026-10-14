@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Lista de Consultas</h1>
+
+<a href="{{ url_for('crear_consulta') }}">Crear consulta</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Consulta</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for consulta in consultas %}
+        <tr>
+            <td>{{ consulta.id }}</td>
+            <td>{{ consulta.nombre }}</td>
+            <td>
+                <a href="{{ url_for('editar_consulta', id=consulta.id) }}">Editar</a>
+
+                <form action="{{ url_for('eliminar_consulta', id=consulta.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
